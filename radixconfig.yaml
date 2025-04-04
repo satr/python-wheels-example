@@ -14,7 +14,7 @@ spec:
         from: main
   components:
     - name: web-app
-      src: ./web-app
+      src: ./webapp
       dockerfileName: Dockerfile.using-public-wheel-in-gh-package
       ports:
         - name: http
