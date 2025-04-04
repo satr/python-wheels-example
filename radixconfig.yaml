@@ -5,19 +5,19 @@ metadata:
 spec:
   build:
     useBuildKit: true
+    secrets:
+      - GITHUB_USER
+      - GITHUB_TOKEN
   environments:
     - name: dev
       build:
         from: main
   components:
-    - name: web-app1
-      image: ghcr.io/satr/simple-webapp:latest
+    - name: web-app
+      src: ./web-app
+      dockerfileName: Dockerfile.using-public-wheel-in-gh-package
       ports:
         - name: http
           port: 8000
-    - name: web-app2
-      src: ./webapp
-      ports:
-        - name: http
-          port: 8000
-      image: ghcr.io/satr/simple-webapp:latest
+      publicPort: http
+

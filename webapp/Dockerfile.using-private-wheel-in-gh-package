@@ -1,0 +1,12 @@
+FROM docker.io/python:3.9.21-alpine3.21
+
+# Install the wheel. Get GitHUb user and token from secrets GITHUB_USER and GITHUB_TOKEN
+RUN pip install --upgrade pip
+RUN --mount=type=secret,id=GITHUB_USER,dst=/secrets/github-user.txt export GITHUB_USER=$(cat /secrets/github-user.txt) && \
+    --mount=type=secret,id=GITHUB_TOKEN,dst=/secrets/github-token.txt export GITHUB_TOKEN=$(cat /secrets/github-token.txt) && \
+    pip install https://$GITHUB_USER:$GITHUB_TOKEN@github.com/satr/python-wheels-example/releases/download/v0.1.0/simple_webapp-0.1.0-py3-none-any.whl
+
+EXPOSE 8000
+
+# Run app
+CMD ["uvicorn", "simple_webapp.main:app", "--host", "0.0.0.0", "--port", "8000"]
