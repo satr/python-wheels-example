@@ -6,6 +6,7 @@ RUN pip install --upgrade pip
 RUN pip install https://github.com/satr/python-wheels-example/releases/download/v0.1.0/simple_webapp-0.1.0-py3-none-any.whl
 
 EXPOSE 8000
+USER 1000
 
 # Run app
 CMD ["uvicorn", "simple_webapp.main:app", "--host", "0.0.0.0", "--port", "8000"]

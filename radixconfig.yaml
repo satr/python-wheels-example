@@ -15,7 +15,7 @@ spec:
   components:
     - name: web-app
       src: ./webapp
-      dockerfileName: Dockerfile.using-public-wheel-in-gh-package
+      dockerfileName: Dockerfile.using-private-wheel-in-gh-package
       ports:
         - name: http
           port: 8000
