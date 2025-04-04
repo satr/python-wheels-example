@@ -1,5 +1,6 @@
 FROM docker.io/python:3.9.21-alpine3.21
 
+WORKDIR /app
 # Install the wheel. Get GitHUb user and token from secrets GITHUB_USER and GITHUB_TOKEN
 RUN pip install --upgrade pip
 RUN --mount=type=secret,id=GITHUB_USER,dst=/secrets/github-user.txt export GITHUB_USER=$(cat /secrets/github-user.txt) && \
