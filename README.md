@@ -62,3 +62,11 @@ docker build -t simple-webapp:using-public-wheel-in-gh-package . -f Dockerfile.u
 ```bash
 docker run -it -p 8000:8000 simple-webapp:using-public-wheel-in-gh-package
 ```
+* When the wheel is in a private repository, user and token (with permits to pull the image/package) can be added to build secrets and used in the Dockerfile (see the [Dockerfile.using-private-wheel-in-gh-package](webapp/Dockerfile.using-private-wheel-in-gh-package)):
+```bash
+echo "my-git-user">/tmp/git-user.txt
+echo "my-git-token">/tmp/git-token.txt
+DOCKER_BUILDKIT=1 docker build . --secret id=GITHUB_USER,src=/tmp/git-user.txt  --secret id=GITHUB_TOKEN,src=/tmp/git-token.txt -t simple-webapp:using-private-wheel-in-gh-package -f Dockerfile.using-private-wheel-in-gh-package
+rm /tmp/git-user.txt
+rm /tmp/git-token.txt
+```

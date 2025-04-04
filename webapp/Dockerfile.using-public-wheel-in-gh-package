@@ -1,7 +1,7 @@
 FROM docker.io/python:3.9.21-alpine3.21
 
 WORKDIR /app
-# Install the wheel
+# Install the wheel from the public repo.
 RUN pip install --upgrade pip
 RUN pip install https://github.com/satr/python-wheels-example/releases/download/v0.1.0/simple_webapp-0.1.0-py3-none-any.whl
 

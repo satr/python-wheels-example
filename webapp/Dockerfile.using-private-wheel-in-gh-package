@@ -1,8 +1,10 @@
 FROM docker.io/python:3.9.21-alpine3.21
 
 WORKDIR /app
-# Install the wheel. Get GitHUb user and token from secrets GITHUB_USER and GITHUB_TOKEN
-# the last command masks in the pip log user:token
+
+# Install the wheel from the private repo.
+# Get GitHub user and token from Radix build secrets GITHUB_USER and GITHUB_TOKEN
+# the last command masks  user:token in the pip log
 RUN pip install --upgrade pip
 RUN --mount=type=secret,id=GITHUB_USER,dst=/secrets/github-user.txt \
     --mount=type=secret,id=GITHUB_TOKEN,dst=/secrets/github-token.txt \
