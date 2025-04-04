@@ -1,0 +1,23 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: python-wheels-example
+spec:
+  build:
+    useBuildKit: true
+  environments:
+    - name: dev
+      build:
+        from: main
+  components:
+    - name: web-app1
+      image: ghcr.io/satr/simple-webapp:latest
+      ports:
+        - name: http
+          port: 8000
+    - name: web-app2
+      src: ./webapp
+      ports:
+        - name: http
+          port: 8000
+      image: ghcr.io/satr/simple-webapp:latest
